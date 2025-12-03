@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro Acessível</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app-wrapper">
+
+    <button id="btn-accessibility" class="icon-btn small-icon top-right" aria-label="Menu de Acessibilidade">
+        <img src="img/acessibilidade.png" alt="">
+    </button>
+
+    <div id="accessibility-menu" class="access-menu hidden" aria-hidden="true">
+    <div class="menu-header">
+        <img src="img/alto-contraste.png" class="menu-icon" alt="">
+        <label for="toggle-contrast" class="header-label">Alto Contraste</label>
+        <input type="checkbox" id="toggle-contrast" class="visually-hidden">
+    </div>
+    
+    <div class="menu-divider"></div>
+
+    <div class="zoom-list">
+        <label class="radio-item">
+            <input type="radio" name="zoom" value="100" checked> 100%
+        </label>
+        <label class="radio-item">
+            <input type="radio" name="zoom" value="110"> 110%
+        </label>
+        <label class="radio-item">
+            <input type="radio" name="zoom" value="120"> 120%
+        </label>
+    </div>
+</div>
+
+    <main class="container">
+        <div class="timer-circle">
+            <svg viewBox="0 0 100 100">
+                <circle class="bg-ring" cx="50" cy="50" r="45"></circle>
+                <circle class="progress-ring" cx="50" cy="50" r="45"></circle>
+            </svg>
+            
+            <div class="timer-content">
+                <div id="display" class="digital-font">00:00</div>
+                
+                <div class="controls">
+                    <button id="btn-reset" class="icon-btn" aria-label="Resetar">
+                        <img src="img/reset.png" alt="">
+                    </button>
+                    <button id="btn-play-pause" class="icon-btn" aria-label="Iniciar">
+                        <img src="img/start.png" id="img-play-pause" alt="">
+                    </button>
+                    <button id="btn-pause-fake" class="icon-btn" style="display:none">
+                         <img src="img/pause.png" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mode-switcher">
+            <button id="mode-chrono" class="icon-btn active-mode" aria-label="Modo Cronômetro">
+                <img src="img/cronometro.png" alt="">
+            </button>
+            <button id="mode-timer" class="icon-btn" aria-label="Modo Temporizador">
+                <img src="img/temporizador.png" alt="">
+            </button>
+        </div>
+    </main>
+
+    <button id="btn-theme" class="icon-btn small-icon bottom-right" aria-label="Alternar Tema">
+        <img src="img/dark-mode.png" id="img-theme" alt="">
+    </button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

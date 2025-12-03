@@ -1,0 +1,315 @@
+/* --- CORREÇÃO DAS FONTES --- */
+/* Certifique-se de que os arquivos .ttf estão dentro de uma pasta chamada "fonts" */
+@font-face {
+    font-family: 'DS-DIGII';
+    src: url('../fonts/DS-DIGII.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Anonymous Pro';
+    src: url('../fonts/AnonymousPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: #F9F5EE; 
+    --bt-high-contrast: #F9F5EE;
+    --acessibility-bg: #F3E0BF;
+    --primary-color: #795A3C;
+    --text-color: #453222;
+    --border-width: 2px;
+}
+
+body.dark-mode {
+    --bg-color: #130E07;
+    --bt-high-contrast: #F9F5EE;
+    --acessibility-bg: #F3E0BF;
+    --primary-color: #795A3C;
+    --text-color: #F9F5EE;
+    --text-color-acessibility: #453222;
+    
+}
+
+body.high-contrast {
+    --bg-color: #130E07 !important;
+    --bt-high-contrast: #130E07;
+    --acessibility-bg: #130E07;
+    --primary-color: #F3F3F3 !important;
+    --text-color: #F3F3F3 !important;
+    --text-color-acessibility: #F3F3F3;
+    --border-width: 3px !important;
+}
+
+/* Adicione isso ao seu CSS */
+#app-wrapper {
+    width: 200px;
+    height: 250px;
+    position: relative;
+    transform-origin: top left; /* Garante que o zoom cresça da esquerda para direita */
+    transition: transform 0.2s ease;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 250px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif; /* Fallback se a fonte falhar */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Foco visível para TAB */
+button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+body.high-contrast button:focus-visible, 
+body.high-contrast input:focus-visible {
+    outline: 2px solid #FFF;
+}
+
+/* Botões gerais */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+/* Trava o tamanho dos ícones principais */
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Botões de canto (Acessibilidade e Tema) */
+.small-icon img {
+    width: 12px;
+    height: 12px;
+}
+
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+/* --- CORREÇÃO DA IMAGEM GIGANTE --- */
+/* Menu de Acessibilidade */
+.access-menu {
+    position: absolute;
+    top: 30px;
+    right: 8px;
+    background-color: var(--acessibility-bg); /* Usa a nova variável de cor */
+    border: 2px solid var(--primary-color); /* Borda sólida da cor do tema */
+    border-radius: 4px;
+    width: 140px;
+    z-index: 20;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 10px; /* Aumentei ligeiramente para melhorar a leitura */
+    color: var(--text-color-acessibility);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Garante que o divisor não saia das bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.access-menu.hidden {
+    display: none;
+}
+
+.access-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+/* AQUI ESTÁ A MÁGICA PARA CONSERTAR O ÍCONE GIGANTE */
+.menu-icon {
+    width: 12px !important;
+    height: 12px !important;
+    object-fit: contain;
+    flex-shrink: 0; /* Impede que o ícone seja esmagado ou esticado */
+}
+
+.menu-header {
+    margin: 3px;
+    background-color: var(--bt-high-contrast);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px var(--primary-color) solid;
+    box-shadow: 1px 1px 2px 0;
+    padding: 2px;
+    gap: 6px;
+}
+
+/* --- CORREÇÃO DO TAB NO ALTO CONTRASTE --- */
+
+/* Quando o input invisível dentro do header ganha foco (pelo TAB ou JS),
+   nós desenhamos a borda na caixa inteira (.menu-header) */
+.menu-header:focus-within {
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px; /* Desenha a borda para dentro para não cortar */
+}
+
+/* Garante que a borda fique branca no modo Alto Contraste */
+body.high-contrast .menu-header:focus-within {
+    outline: 2px solid #FFFFFF;
+}
+
+.header-label {
+    cursor: pointer;
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+/* Classe para esconder o checkbox mantendo-o funcional */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Estilo da Linha Divisória */
+.menu-divider {
+    height: 2px;
+    background-color: var(--primary-color);
+    width: 100%;
+}
+/* Divisor branco em alto contraste */
+body.high-contrast .menu-divider {
+    background-color: #FFF !important;
+}
+
+/* Estilos da Lista de Zoom */
+.zoom-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px; /* Espaçamento entre as opções */
+}
+
+/* Estilo de cada item de rádio */
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Cor nativa dos radio buttons (navegadores modernos) */
+input[type="radio"] {
+    accent-color: var(--primary-color);
+}
+input[type="radio"]:checked {
+     accent-color: var(--primary-color);
+}
+
+/* Radio buttons brancos em alto contraste */
+body.high-contrast input[type="radio"] {
+    accent-color: #FFF;
+}
+
+/* Layout do Timer */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 10px;
+}
+
+.timer-circle {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+circle {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 3;
+}
+
+.bg-ring { opacity: 0.3; }
+.progress-ring { stroke-dasharray: 283; stroke-dashoffset: 0; }
+
+body.high-contrast circle { stroke: #FFF; opacity: 1; }
+
+.timer-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Estilo do Display Digital */
+.digital-font {
+    font-family: 'DS-DIGII', monospace;
+    font-size: 48px; /* Tamanho 48px conforme pedido */
+    line-height: 1;
+}
+
+.controls, .mode-switcher {
+    display: flex;
+    gap: 15px;
+}
+.mode-switcher { margin-top: 15px; }
+
+/* Correção de cores para Dark/High Contrast nos ícones */
+body.high-contrast img {
+    filter: invert(1) brightness(4) !important;
+}
+
+menu-icon img {
+
+}
+/* O menu tem fundo claro, então não inverter ícones lá dentro */
+.access-menu img {
+    filter: none !important;
+}
