@@ -1,508 +1,626 @@
 /* =========================================
    1. IMPORTAÇÃO DE FONTES
    ========================================= */
-   @font-face {
-    font-family: 'DS-DIGII';
-    src: url('../fonts/DS-DIGII.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Anonymous Pro';
-    src: url('../fonts/AnonymousPro-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* =========================================
+@font-face {
+  font-family: "DS-DIGII";
+  src: url("../fonts/DS-DIGII.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("../fonts/AnonymousPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =========================================
      2. VARIÁVEIS (CORES E TEMAS)
      ========================================= */
-  :root {
-    --bg-color: #F9F5EE;
-    --bt-high-contrast: #F9F5EE;
-    --acessibility-bg: #F3E0BF;
-    --primary-color: #795A3C;
-    --text-color: #453222;
-    --text-color-acessibility: #453222;
-    --border-width: 2px;
-  }
-  
-  /* Tema Escuro */
-  body.dark-mode {
-    --bg-color: #130E07;
-    --bt-high-contrast: #F9F5EE;
-    --acessibility-bg: #F3E0BF;
-    --primary-color: #795A3C;
-    --text-color: #F9F5EE;
-    --text-color-acessibility: #453222;
-  }
-  
-  /* Alto Contraste (Base) */
-  body.high-contrast {
-    --bg-color: #130E07 !important;
-    --bt-high-contrast: #130E07;
-    --acessibility-bg: #130E07;
-    --primary-color: #F3F3F3 !important;
-    --text-color: #F3F3F3 !important;
-    --text-color-acessibility: #F3F3F3;
-    --border-width: 3px !important;
-  }
-  
-  /* =========================================
+:root {
+  --bg-color: #f9f5ee;
+  --bt-high-contrast: #f9f5ee;
+  --acessibility-bg: #f3e0bf;
+  --primary-color: #795a3c;
+  --text-color: #453222;
+  --text-color-acessibility: #453222;
+  --border-width: 2px;
+}
+
+/* Tema Escuro */
+body.dark-mode {
+  --bg-color: #130e07;
+  --bt-high-contrast: #f9f5ee;
+  --acessibility-bg: #f3e0bf;
+  --primary-color: #795a3c;
+  --text-color: #f9f5ee;
+  --text-color-acessibility: #453222;
+}
+
+/* Alto Contraste (Base) */
+body.high-contrast {
+  --bg-color: #130e07 !important;
+  --bt-high-contrast: #130e07;
+  --acessibility-bg: #130e07;
+  --primary-color: #f3f3f3 !important;
+  --text-color: #f3f3f3 !important;
+  --text-color-acessibility: #f3f3f3;
+  --border-width: 3px !important;
+}
+
+/* =========================================
      3. RESET E ESTRUTURA GLOBAL
      ========================================= */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    overflow: hidden;
-  }
-  
-  body {
-    color: var(--text-color);
-    font-family: sans-serif;
-  }
-  
-  /* Wrapper principal (Tamanho Real do Design) */
-  #app-wrapper {
-    width: 200px;
-    height: 250px;
-    position: relative;
-    transform-origin: top left;
-  }
-  
-  /* Helper para esconder elementos */
-  .hidden {
-    display: none !important;
-  }
-  
-  /* Foco visível para acessibilidade */
-  button:focus-visible, 
-  input:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-  }
-  
-  /* =========================================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+body {
+  color: var(--text-color);
+  font-family: sans-serif;
+}
+
+/* Wrapper principal (Tamanho Real do Design) */
+#app-wrapper {
+  width: 200px;
+  height: 250px;
+  position: relative;
+  transform-origin: top left;
+}
+
+/* Helper para esconder elementos */
+.hidden {
+  display: none !important;
+}
+
+/* Foco visível para acessibilidade */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* =========================================
      4. LAYOUT PRINCIPAL (TIMER)
      ========================================= */
-  .container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .timer-circle {
-    position: absolute;
-    top: 45%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 170px;
-    height: 170px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .timer-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -45%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 10px;
-    z-index: 5;
-  }
-  
-  /* =========================================
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.timer-circle {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  z-index: 5;
+}
+
+/* =========================================
      5. COMPONENTES VISUAIS (SVG & DISPLAY)
      ========================================= */
-  svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-  }
-  
-  circle {
-    fill: none;
-    stroke: var(--primary-color);
-    stroke-width: 3;
-  }
-  
-  .bg-ring { opacity: 0.3; }
-  .progress-ring { stroke-dasharray: 283; stroke-dashoffset: 0; }
-  
-  .digital-font {
-    font-family: 'DS-DIGII', monospace;
-    font-size: 48px;
-    line-height: 1;
-  }
-  
-  #display {
-    height: 48px;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* =========================================
+svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+circle {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 3;
+}
+
+.bg-ring {
+  opacity: 0.3;
+}
+.progress-ring {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 0;
+}
+
+.digital-font {
+  font-family: "DS-DIGII", monospace;
+  font-size: 48px;
+  line-height: 1;
+}
+
+#display {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================
      6. INPUTS (MODO TEMPORIZADOR)
      ========================================= */
-  #input-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    height: 48px;
-  }
-  
-  #input-wrapper input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--primary-color);
-    color: var(--text-color);
-    font-family: 'DS-DIGII', monospace;
-    font-size: 48px;
-    width: 55px;
-    text-align: center;
-    padding: 0;
-    line-height: 1;
-    -moz-appearance: textfield;
-  }
-  
-  /* Remove setas do Chrome/Safari */
-  #input-wrapper input::-webkit-outer-spin-button,
-  #input-wrapper input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  #input-wrapper input:focus {
-    outline: none;
-    border-bottom: 2px solid var(--primary-color);
-  }
-  
-  #input-wrapper span {
-    font-family: 'DS-DIGII', monospace;
-    font-size: 48px;
-    line-height: 1;
-    margin-top: -5px;
-  }
-  
-  /* =========================================
+#input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 48px;
+}
+
+#input-wrapper input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--text-color);
+  font-family: "DS-DIGII", monospace;
+  font-size: 48px;
+  width: 55px;
+  text-align: center;
+  padding: 0;
+  line-height: 1;
+  -moz-appearance: textfield;
+}
+
+/* Remove setas do Navegador */
+#input-wrapper input::-webkit-outer-spin-button,
+#input-wrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#input-wrapper input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#input-wrapper span {
+  font-family: "DS-DIGII", monospace;
+  font-size: 48px;
+  line-height: 1;
+  margin-top: -5px;
+}
+
+/* =========================================
      7. BOTÕES E CONTROLES
      ========================================= */
-  .icon-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2px;
-  }
-  
-  .icon-btn img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-  }
-  
-  .controls {
-    display: flex;
-    gap: 15px;
-  }
-  
-  /* Posicionamento dos Botões Pequenos */
-  .small-icon img { width: 20px; height: 20px; }
-  
-  .top-right { position: absolute; top: 8px; right: 8px; z-index: 10; }
-  .top-left { position: absolute; top: 8px; left: 8px; z-index: 10; }
-  .bottom-right { position: absolute; bottom: 8px; right: 8px; z-index: 10; }
-  
-  /* Botões de Troca de Modo (Inferior) */
-  .mode-switcher {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 10;
-  }
-  
-  /* Estilos de Modo Ativo/Inativo */
-  .mode-switcher .icon-btn {
-    opacity: 0.5;
-    padding: 8px;
-    border-radius: 50%;
-  }
-  
-  .mode-switcher .icon-btn.active-mode {
-    opacity: 1;
-    background-color: var(--primary-color);
-    transform: scale(1.1);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .mode-switcher .icon-btn.active-mode img {
-    filter: brightness(0) invert(1);
-  }
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
 
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
 
-  
-  /* =========================================
+.controls {
+  display: flex;
+  gap: 15px;
+}
+
+/* Posicionamento dos Botões Pequenos */
+.small-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 10;
+}
+
+/* Botões de Troca de Modo (Inferior) */
+.mode-switcher {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+/* Estilos de Modo Ativo/Inativo */
+.mode-switcher .icon-btn {
+  opacity: 0.5;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.mode-switcher .icon-btn.active-mode {
+  opacity: 1;
+  background-color: var(--primary-color);
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mode-switcher .icon-btn.active-mode img {
+  filter: brightness(0) invert(1);
+}
+
+/* =========================================
      8. MENU DE ACESSIBILIDADE
      ========================================= */
-  .access-menu {
-    position: absolute;
-    top: 30px;
-    right: 8px;
-    background-color: var(--acessibility-bg);
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
-    width: 140px;
-    z-index: 20;
-    font-family: 'Anonymous Pro', monospace;
-    font-size: 10px;
-    color: var(--text-color-acessibility);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .menu-header {
-    margin: 3px;
-    background-color: var(--bt-high-contrast);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--primary-color);
-    box-shadow: 1px 1px 2px 0;
-    padding: 2px;
-    gap: 6px;
-  }
-  
-  .menu-icon { width: 12px !important; height: 12px !important; object-fit: contain; flex-shrink: 0; }
-  .header-label { cursor: pointer; flex-grow: 1; font-weight: bold; }
-  .menu-divider { height: 2px; background-color: var(--primary-color); width: 100%; }
-  .zoom-list { display: flex; flex-direction: column; padding: 8px; gap: 8px; }
-  .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-  
-  .visually-hidden {
-    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
-  }
-  
-  .menu-header:focus-within { outline: 2px solid var(--primary-color); outline-offset: -2px; }
-  input[type="radio"] { accent-color: var(--primary-color); }
-  
-  /* =========================================
+.access-menu {
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  background-color: var(--acessibility-bg);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  width: 140px;
+  z-index: 20;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 10px;
+  color: var(--text-color-acessibility);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-header {
+  margin: 3px;
+  background-color: var(--bt-high-contrast);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  box-shadow: 1px 1px 2px 0;
+  padding: 2px;
+  gap: 6px;
+}
+
+.menu-icon {
+  width: 12px !important;
+  height: 12px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.header-label {
+  cursor: pointer;
+  flex-grow: 1;
+  font-weight: bold;
+}
+.menu-divider {
+  height: 2px;
+  background-color: var(--primary-color);
+  width: 100%;
+}
+.zoom-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+}
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.menu-header:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: -2px;
+}
+input[type="radio"] {
+  accent-color: var(--primary-color);
+}
+
+/* =========================================
      9. TELA DE FAQ
      ========================================= */
-  #faq-view {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-color);
-    z-index: 30; /* Maior que o menu (20) e controles (10) */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-  
-  #faq-view.hidden {
-    display: none !important;
-  }
-  
-  .faq-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 5px;
-  }
-  
-  .faq-header h2 {
-    font-size: 16px;
-    font-family: sans-serif;
-    color: var(--primary-color);
-    margin: 0;
-  }
-  
-  #btn-close-faq {
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--primary-color);
-  }
-  
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  details {
-    background-color: rgba(0,0,0,0.05);
-    border-radius: 4px;
-    padding: 5px;
-  }
-  
-  summary {
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    list-style: none;
-    color: var(--text-color);
-  }
-  
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: '+'; float: right; font-weight: bold; }
-  details[open] summary::after { content: '-'; }
-  
-  details p {
-    font-size: 11px;
-    margin-top: 5px;
-    line-height: 1.4;
-    color: var(--text-color);
-    opacity: 0.9;
-  }
-  
-  /* =========================================
+#faq-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  z-index: 30; /* Maior que o menu (20) e controles (10) */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#faq-view.hidden {
+  display: none !important;
+}
+
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 5px;
+}
+
+.faq-header h2 {
+  font-size: 16px;
+  font-family: sans-serif;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+#btn-close-faq {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+details {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 5px;
+}
+
+summary {
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text-color);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::after {
+  content: "+";
+  float: right;
+  font-weight: bold;
+}
+details[open] summary::after {
+  content: "-";
+}
+
+details p {
+  font-size: 11px;
+  margin-top: 5px;
+  line-height: 1.4;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* =========================================
      10. ANIMAÇÕES E INTERAÇÕES (JUICY)
      ========================================= */
-  
-  /* --- EFEITOS NOS BOTÕES (HOVER & CLICK) --- */
-  .icon-btn {
-    transition: transform 0.1s cubic-bezier(0.2, 0.2, 0.2, 0.2),
-                opacity 0.1s ease,
-                background-color 0.1s ease;
+
+/* --- EFEITOS NOS BOTÕES (HOVER & CLICK) --- */
+.icon-btn {
+  transition: transform 0.1s cubic-bezier(0.2, 0.2, 0.2, 0.2), opacity 0.1s ease,
+    background-color 0.1s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.05) translateY(-1px);
+  opacity: 1;
+}
+
+.small-icon:hover {
+  filter: brightness(0.6);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Destaque sutil no hover dos controles principais */
+.controls .icon-btn:hover {
+  background-color: var(--acessibility-bg);
+  border-radius: 50%;
+}
+
+/* --- ANIMAÇÃO MENU ACESSIBILIDADE --- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
   }
-  
-  .icon-btn:hover {
-    transform: scale(1.05) translateY(-1px);
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#accessibility-menu:not(.hidden) {
+  animation: fadeInDown 0.3s ease-out forwards;
+}
+
+.access-menu > div {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+.access-menu > div:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.access-menu > div:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.access-menu > div:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeIn {
+  to {
     opacity: 1;
   }
+}
 
-  .small-icon:hover {
-    filter: brightness(0.6);
-  }
-  
-  .icon-btn:active {
-    transform: scale(0.95);
-  }
-  
-  /* Destaque sutil no hover dos controles principais */
-  .controls .icon-btn:hover {
-    background-color: var(--acessibility-bg);
-    border-radius: 50%;
-  }
-  
-  /* --- ANIMAÇÃO MENU ACESSIBILIDADE --- */
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-10px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  
-  #accessibility-menu:not(.hidden) {
-    animation: fadeInDown 0.3s ease-out forwards;
-  }
-  
-  .access-menu > div {
+/* --- ANIMAÇÃO FAQ --- */
+@keyframes slideUpFade {
+  from {
     opacity: 0;
-    animation: fadeIn 0.4s ease forwards;
+    transform: translateY(20px);
   }
-  .access-menu > div:nth-child(1) { animation-delay: 0.1s; }
-  .access-menu > div:nth-child(2) { animation-delay: 0.15s; }
-  .access-menu > div:nth-child(3) { animation-delay: 0.2s; }
-  
-  @keyframes fadeIn { to { opacity: 1; } }
-  
-  /* --- ANIMAÇÃO FAQ --- */
-  @keyframes slideUpFade {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #faq-view:not(.hidden) {
-    animation: slideUpFade 0.35s ease-out forwards;
+}
+
+#faq-view:not(.hidden) {
+  animation: slideUpFade 0.35s ease-out forwards;
+}
+
+details {
+  transition: background-color 0.2s;
+}
+details:hover {
+  background-color: var(--acessibility-bg);
+}
+
+/* --- FLUXO DO TIMER (INPUTS) --- */
+#input-wrapper span {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
   }
-  
-  details { transition: background-color 0.2s; }
-  details:hover { background-color: var(--acessibility-bg); }
-  
-  /* --- FLUXO DO TIMER (INPUTS) --- */
-  #input-wrapper span {
-    animation: pulse 2s infinite ease-in-out;
+  50% {
+    opacity: 0.5;
   }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+}
+
+#input-wrapper input {
+  transition: border-bottom-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- TROCAR DE MODOS --- */
+.mode-switcher .icon-btn.active-mode {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
   }
-  
-  #input-wrapper input {
-    transition: border-bottom-color 0.3s ease, color 0.3s ease;
+  50% {
+    transform: scale(1.2);
   }
-  
-  /* --- SWAP DE MODOS --- */
-  .mode-switcher .icon-btn.active-mode {
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  100% {
+    transform: scale(1.1);
   }
-  
-  @keyframes popIn {
-    0% { transform: scale(0.8); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1.1); }
-  }
-  
-  /* =========================================
-     11. OVERRIDES FINAIS DE ALTO CONTRASTE
-     (Sempre no final para ter prioridade sobre animações)
-     ========================================= */
-  /* =========================================
+}
+
+/* =========================================
    11. OVERRIDES FINAIS DE ALTO CONTRASTE
-   (Sempre no final para ter prioridade)
    ========================================= */
 body.high-contrast button:focus-visible,
 body.high-contrast input:focus-visible {
-  outline: 2px solid #FFF;
+  outline: 2px solid #fff;
 }
 
-body.high-contrast img { filter: invert(1) brightness(4) !important; }
-body.high-contrast circle { stroke: #FFF; opacity: 1; }
-body.high-contrast .menu-header:focus-within { outline: 2px solid #FFFFFF; }
-body.high-contrast .menu-divider { background-color: #FFF !important; }
-body.high-contrast input[type="radio"] { accent-color: #FFF; }
+body.high-contrast img {
+  filter: invert(1) brightness(4) !important;
+}
+body.high-contrast circle {
+  stroke: #fff;
+  opacity: 1;
+}
+body.high-contrast .menu-header:focus-within {
+  outline: 2px solid #ffffff;
+}
+body.high-contrast .menu-divider {
+  background-color: #fff !important;
+}
+body.high-contrast input[type="radio"] {
+  accent-color: #fff;
+}
 
 /* Apenas no Alto Contraste o botão ganha fundo BRANCO e ícone PRETO */
 body.high-contrast .mode-switcher .icon-btn.active-mode {
-    background-color: #FFFFFF !important; /* Fundo branco puro */
-    opacity: 1;
+  background-color: #ffffff !important; /* Fundo branco puro */
+  opacity: 1;
 }
-body.high-contrast .mode-switcher .icon-btn.active-mode img { 
-    filter: brightness(0) !important; /* Ícone preto puro */
+body.high-contrast .mode-switcher .icon-btn.active-mode img {
+  filter: brightness(0) !important; /* Ícone preto puro */
 }
 
 /* Remove fundos de hover em alto contraste para legibilidade */
-body.high-contrast .controls .icon-btn:hover { background-color: transparent; }
-body.high-contrast details:hover { background-color: transparent; }
+body.high-contrast .controls .icon-btn:hover {
+  background-color: transparent;
+}
+body.high-contrast details:hover {
+  background-color: transparent;
+}
 
-body.high-contrast details { background-color: #000; border: 1px solid #FFF; }
-body.high-contrast #btn-close-faq { color: #FFF; }
+body.high-contrast details {
+  background-color: #000;
+  border: 1px solid #fff;
+}
+body.high-contrast #btn-close-faq {
+  color: #fff;
+}
 
-.access-menu img { filter: none !important; }
+.access-menu img {
+  filter: none !important;
+}

@@ -1,112 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cronômetro Acessível</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cronômetro Acessível</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app-wrapper">
+      <button
+        id="btn-faq"
+        class="icon-btn small-icon top-left"
+        aria-label="Perguntas Frequentes"
+      >
+        <img
+          src="img/faq.png"
+          onerror="this.src='img/acessibilidade.png'"
+          alt="ícone FAQ"
+        />
+      </button>
 
-  <div id="app-wrapper">
+      <button
+        id="btn-accessibility"
+        class="icon-btn small-icon top-right"
+        aria-label="Menu de Acessibilidade"
+      >
+        <img src="img/acessibilidade.png" alt="ícone acessibilidade" />
+      </button>
 
-    <button id="btn-faq" class="icon-btn small-icon top-left" aria-label="Perguntas Frequentes">
-      <img src="img/faq.png" onerror="this.src='img/acessibilidade.png'" alt="FAQ">
-    </button>
-
-    <button id="btn-accessibility" class="icon-btn small-icon top-right" aria-label="Menu de Acessibilidade">
-      <img src="img/acessibilidade.png" alt="">
-    </button>
-
-    <div id="accessibility-menu" class="access-menu hidden" aria-hidden="true">
-      <div class="menu-header">
-        <img src="img/alto-contraste.png" class="menu-icon" alt="">
-        <label for="toggle-contrast" class="header-label">Alto Contraste</label>
-        <input type="checkbox" id="toggle-contrast" class="visually-hidden">
-      </div>
-      <div class="menu-divider"></div>
-      <div class="zoom-list">
-        <label class="radio-item"><input type="radio" name="zoom" value="100" checked> 100%</label>
-        <label class="radio-item"><input type="radio" name="zoom" value="110"> 110%</label>
-        <label class="radio-item"><input type="radio" name="zoom" value="120"> 120%</label>
-      </div>
-    </div>
-
-    <main id="main-view" class="container">
-      <div class="timer-circle">
-        <svg viewBox="0 0 100 100">
-          <circle class="bg-ring" cx="50" cy="50" r="45"></circle>
-          <circle class="progress-ring" cx="50" cy="50" r="45"></circle>
-        </svg>
-
-        <div class="timer-content">
-          <div class="display-area">
-            <div id="display" class="digital-font">00:00</div>
-            
-            <div id="input-wrapper" class="hidden">
-               <input type="number" id="input-min" placeholder="00" min="0" max="99">
-               <span>:</span>
-               <input type="number" id="input-sec" placeholder="00" min="0" max="59">
-            </div>
-          </div>
-
-          <div class="controls">
-            <button id="btn-reset" class="icon-btn" aria-label="Resetar">
-              <img src="img/reset.png" alt="">
-            </button>
-            <button id="btn-play-pause" class="icon-btn" aria-label="Iniciar">
-              <img src="img/start.png" id="img-play-pause" alt="">
-            </button>
-          </div>
+      <div
+        id="accessibility-menu"
+        class="access-menu hidden"
+        aria-hidden="true"
+      >
+        <div class="menu-header">
+          <img
+            src="img/alto-contraste.png"
+            class="menu-icon"
+            alt="ícone alto-contraste"
+          />
+          <label for="toggle-contrast" class="header-label"
+            >Alto Contraste</label
+          >
+          <input type="checkbox" id="toggle-contrast" class="visually-hidden" />
+        </div>
+        <div class="menu-divider"></div>
+        <div class="zoom-list">
+          <label class="radio-item"
+            ><input type="radio" name="zoom" value="100" checked /> 100%</label
+          >
+          <label class="radio-item"
+            ><input type="radio" name="zoom" value="110" /> 110%</label
+          >
+          <label class="radio-item"
+            ><input type="radio" name="zoom" value="120" /> 120%</label
+          >
         </div>
       </div>
 
-      <div class="mode-switcher">
-        <button id="mode-chrono" class="icon-btn active-mode" aria-label="Modo Cronômetro">
-          <img src="img/cronometro.png" alt="">
-        </button>
-        <button id="mode-timer" class="icon-btn" aria-label="Modo Temporizador">
-          <img src="img/temporizador.png" alt="">
-        </button>
-      </div>
-    </main>
+      <main id="main-view" class="container">
+        <div class="timer-circle">
+          <svg viewBox="0 0 100 100">
+            <circle class="bg-ring" cx="50" cy="50" r="45"></circle>
+            <circle class="progress-ring" cx="50" cy="50" r="45"></circle>
+          </svg>
 
-    <section id="faq-view" class="hidden" aria-hidden="true">
-      <div class="faq-header">
-        <h2>Dúvidas (FAQ)</h2>
-        <button id="btn-close-faq" class="icon-btn small-icon" aria-label="Fechar FAQ">✕</button>
-      </div>
-      
-      <div class="faq-list">
-        <details>
-          <summary>Como alternar modos?</summary>
-          <p>Use os ícones abaixo do relógio: esquerda para cronômetro, direita para timer.</p>
-        </details>
-        <details>
-          <summary>Como definir o tempo?</summary>
-          <p>No modo Timer (ampulheta), clique nos números para digitar minutos e segundos.</p>
-        </details>
-        <details>
-          <summary>Existe atalho de teclado?</summary>
-          <p>Use a tecla 'Tab' para navegar e 'Enter' ou 'Espaço' para ativar os botões.</p>
-        </details>
-        <details>
-          <summary>Como mudar o tema?</summary>
-          <p>Clique no ícone de lua/sol no canto inferior direito para modo escuro.</p>
-        </details>
-        <details>
-          <summary>O que é Alto Contraste?</summary>
-          <p>No menu de acessibilidade (canto superior direito), ative para cores preto e branco.</p>
-        </details>
-      </div>
-    </section>
+          <div class="timer-content">
+            <div class="display-area">
+              <div id="display" class="digital-font">00:00</div>
 
-    <button id="btn-theme" class="icon-btn small-icon bottom-right" aria-label="Alternar Tema">
-      <img src="img/dark-mode.png" id="img-theme" alt="">
-    </button>
+              <div id="input-wrapper" class="hidden">
+                <input
+                  type="number"
+                  id="input-min"
+                  placeholder="00"
+                  min="0"
+                  max="99"
+                />
+                <span>:</span>
+                <input
+                  type="number"
+                  id="input-sec"
+                  placeholder="00"
+                  min="0"
+                  max="59"
+                />
+              </div>
+            </div>
 
-  </div>
+            <div class="controls">
+              <button id="btn-reset" class="icon-btn" aria-label="Resetar">
+                <img src="img/reset.png" alt="ícone reset" />
+              </button>
+              <button id="btn-play-pause" class="icon-btn" aria-label="Iniciar">
+                <img
+                  src="img/start.png"
+                  id="img-play-pause"
+                  alt="ícone start"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
 
-  <script src="js/script.js"></script>
-</body>
+        <div class="mode-switcher">
+          <button
+            id="mode-chrono"
+            class="icon-btn active-mode"
+            aria-label="Modo Cronômetro"
+          >
+            <img src="img/cronometro.png" alt="ícone cronômetro" />
+          </button>
+          <button
+            id="mode-timer"
+            class="icon-btn"
+            aria-label="Modo Temporizador"
+          >
+            <img src="img/temporizador.png" alt="ícone temporizador" />
+          </button>
+        </div>
+      </main>
+
+      <section id="faq-view" class="hidden" aria-hidden="true">
+        <div class="faq-header">
+          <h2>Dúvidas (FAQ)</h2>
+          <button
+            id="btn-close-faq"
+            class="icon-btn small-icon"
+            aria-label="Fechar FAQ"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>Como alternar modos?</summary>
+            <p>
+              Use os ícones abaixo do relógio: esquerda para cronômetro, direita
+              para timer.
+            </p>
+          </details>
+          <details>
+            <summary>Como definir o tempo?</summary>
+            <p>
+              No modo Timer (ampulheta), clique nos números para digitar minutos
+              e segundos.
+            </p>
+          </details>
+          <details>
+            <summary>Existe atalho de teclado?</summary>
+            <p>
+              Use a tecla 'Tab' para navegar e 'Enter' ou 'Espaço' para ativar
+              os botões.
+            </p>
+          </details>
+          <details>
+            <summary>Como mudar o tema?</summary>
+            <p>
+              Clique no ícone de lua/sol no canto inferior direito para modo
+              escuro.
+            </p>
+          </details>
+          <details>
+            <summary>O que é Alto Contraste?</summary>
+            <p>
+              No menu de acessibilidade (canto superior direito), ative para
+              cores preto e branco.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <button
+        id="btn-theme"
+        class="icon-btn small-icon bottom-right"
+        aria-label="Alternar Tema"
+      >
+        <img src="img/dark-mode.png" id="img-theme" alt="ícone dark-mode" />
+      </button>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
